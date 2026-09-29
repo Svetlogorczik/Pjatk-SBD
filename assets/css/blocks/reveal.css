@@ -1,0 +1,42 @@
+/* Blok: reveal – ukrywane podpowiedzi i rozwiązania */
+.reveal {
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-m);
+  background: var(--c-surface);
+}
+
+.reveal__summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  color: var(--c-link);
+  font-weight: 600;
+  font-size: .92rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.reveal__summary::-webkit-details-marker {
+  display: none;
+}
+
+.reveal__summary::before {
+  content: "▸";
+  transition: transform .15s;
+}
+
+.reveal[open] > .reveal__summary::before {
+  transform: rotate(90deg);
+}
+
+.reveal__body {
+  padding: 0 var(--space-3) var(--space-3);
+}
+
+.reveal__body > * + * {
+  margin-top: var(--space-3);
+}
+
+.reveal--hint > .reveal__summary { color: var(--c-tip); }
+.reveal--solution > .reveal__summary { color: var(--c-exam); }

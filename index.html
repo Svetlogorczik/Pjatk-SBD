@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pl" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SBD – Systemy Baz Danych</title>
+  <meta name="description" content="Nieoficjalne materiały do nauki przedmiotu Systemy Baz Danych (PJATK): wykłady, ściągi, zadania i test próbny w trzech językach.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script>
+    /* Ustawienie motywu przed pierwszym renderem (bez "mignięcia"). */
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('sbd-theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') {
+        t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body class="page">
+  <a class="skip-link" href="#main" data-i18n="skip">Przejdź do treści</a>
+
+  <header class="header">
+    <div class="header__inner">
+      <button class="header__menu icon-btn" type="button" aria-controls="sidebar" aria-expanded="false" data-action="menu" data-i18n-title="menu" title="Menu">
+        <span class="icon-btn__icon" aria-hidden="true">☰</span>
+      </button>
+
+      <a class="header__logo logo" href="#/">
+        <span class="logo__mark">SBD</span>
+        <span class="logo__text">
+          <span class="logo__title" data-i18n="siteTitle">Systemy Baz Danych</span>
+          <span class="logo__sub" data-i18n="siteSub">PJATK · 2026/27</span>
+        </span>
+      </a>
+
+      <nav class="header__nav" aria-label="Main">
+        <a class="header__link" href="#/lectures" data-route="lectures" data-i18n="navLectures">Wykłady</a>
+        <a class="header__link" href="#/tasks" data-route="tasks" data-i18n="navTasks">Zadania</a>
+        <a class="header__link" href="#/cheatsheets" data-route="cheatsheets" data-i18n="navCheats">Ściągi</a>
+        <a class="header__link" href="#/quiz" data-route="quiz" data-i18n="navQuiz">Test</a>
+        <a class="header__link" href="#/course" data-route="course" data-i18n="navCourse">Zaliczenie</a>
+      </nav>
+
+      <div class="header__tools">
+        <div class="switcher" role="group" data-i18n-aria="lang" aria-label="Język">
+          <button class="switcher__btn" type="button" data-lang="pl">PL</button>
+          <button class="switcher__btn" type="button" data-lang="en">EN</button>
+          <button class="switcher__btn" type="button" data-lang="ru">RU</button>
+        </div>
+        <button class="icon-btn" type="button" data-action="theme" data-i18n-title="themeToggle" title="Motyw">
+          <span class="icon-btn__icon icon-btn__icon--light" aria-hidden="true">☀</span>
+          <span class="icon-btn__icon icon-btn__icon--dark" aria-hidden="true">☾</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="layout__sidebar sidebar" id="sidebar">
+      <nav class="sidebar__nav" data-slot="sidebar" aria-label="Sidebar"></nav>
+    </aside>
+    <div class="sidebar__backdrop" data-action="menu-close" hidden></div>
+
+    <main class="layout__main main" id="main" tabindex="-1" data-slot="main">
+      <p class="main__loading">…</p>
+    </main>
+  </div>
+
+  <div class="drawer" data-slot="drawer" hidden>
+    <div class="drawer__backdrop" data-action="drawer-close"></div>
+    <section class="drawer__panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+      <header class="drawer__header">
+        <h2 class="drawer__title" id="drawer-title"></h2>
+        <div class="drawer__tools">
+          <button class="btn btn--ghost btn--small" type="button" data-action="print" data-i18n="print">Drukuj</button>
+          <button class="icon-btn" type="button" data-action="drawer-close" data-i18n-title="close" title="Zamknij">
+            <span class="icon-btn__icon" aria-hidden="true">✕</span>
+          </button>
+        </div>
+      </header>
+      <div class="drawer__body prose" data-slot="drawer-body"></div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__text" data-i18n-html="footer"></p>
+    </div>
+  </footer>
+
+  <noscript><p class="main__loading">Ta strona wymaga JavaScript. / This site requires JavaScript. / Для сайта нужен JavaScript.</p></noscript>
+
+  <script src="assets/js/core.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/highlight.js"></script>
+  <script src="content/topics.js"></script>
+  <script src="content/quiz.js"></script>
+  <script src="content/code/sql.js"></script>
+  <script src="content/code/tsql.js"></script>
+  <script src="content/code/plsql.js"></script>
+  <script src="content/code/admin.js"></script>
+  <script src="content/code/practice-db.js"></script>
+  <script src="content/code/solutions.js"></script>
+  <script src="assets/js/render.js"></script>
+  <script src="assets/js/pages.js"></script>
+  <script src="assets/js/quiz.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+/* Blok: lesson – strona wykładu */
+.lesson {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, var(--content-w)) 240px;
+  justify-content: center;
+  gap: var(--space-6);
+}
+
+.lesson__main {
+  min-width: 0;
+}
+
+.lesson__aside {
+  position: sticky;
+  top: calc(var(--header-h) + var(--space-5));
+  align-self: start;
+  max-height: calc(100vh - var(--header-h) - 48px);
+  overflow-y: auto;
+}
+
+.lesson__header {
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--c-border);
+}
+
+.lesson__kicker {
+  margin-bottom: var(--space-2);
+  color: var(--c-primary);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.lesson__title {
+  margin-bottom: var(--space-3);
+  font-size: clamp(1.6rem, 3.2vw, 2.25rem);
+}
+
+.lesson__lead {
+  margin-bottom: var(--space-4);
+  color: var(--c-muted);
+  font-size: 1.08rem;
+}
+
+.lesson__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  color: var(--c-muted);
+  font-size: .85rem;
+}
+
+.lesson__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.lesson__toc-mobile {
+  display: none;
+  margin-bottom: var(--space-5);
+}
+
+.lesson__related {
+  margin-top: var(--space-6);
+  padding: var(--space-4);
+  border: 1px dashed var(--c-border);
+  border-radius: var(--radius-m);
+}
+
+.lesson__related-title {
+  margin-bottom: var(--space-2);
+  font-size: 1rem;
+}
+
+.lesson__related-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+@media (max-width: 1279px) {
+  .lesson {
+    grid-template-columns: minmax(0, var(--content-w));
+  }
+
+  .lesson__aside {
+    display: none;
+  }
+
+  .lesson__toc-mobile {
+    display: block;
+  }
+}

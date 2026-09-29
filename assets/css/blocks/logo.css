@@ -1,0 +1,43 @@
+/* Blok: logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--c-text);
+  text-decoration: none;
+}
+
+.logo__mark {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-s);
+  background: var(--c-primary);
+  color: #fff;
+  font-weight: 800;
+  font-size: .9rem;
+  letter-spacing: .04em;
+}
+
+.logo__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.logo__title {
+  font-weight: 700;
+  font-size: .98rem;
+}
+
+.logo__sub {
+  color: var(--c-muted);
+  font-size: .75rem;
+}
+
+@media (max-width: 480px) {
+  .logo__text {
+    display: none;
+  }
+}

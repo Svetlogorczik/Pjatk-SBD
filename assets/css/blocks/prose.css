@@ -1,0 +1,132 @@
+/* Blok: prose – typografia treści wykładów i zadań */
+.prose {
+  font-size: 1.02rem;
+}
+
+.prose > * + * {
+  margin-top: var(--space-4);
+}
+
+.prose h2 {
+  margin-top: var(--space-7);
+  padding-top: var(--space-2);
+  font-size: 1.5rem;
+}
+
+.prose h2:first-child {
+  margin-top: 0;
+}
+
+.prose h3 {
+  margin-top: var(--space-6);
+  font-size: 1.18rem;
+}
+
+.prose h4 {
+  margin-top: var(--space-5);
+  font-size: 1.02rem;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.4em;
+}
+
+.prose li + li {
+  margin-top: var(--space-1);
+}
+
+.prose li > ul,
+.prose li > ol {
+  margin-top: var(--space-1);
+}
+
+.prose strong {
+  font-weight: 700;
+}
+
+.prose :not(pre) > code {
+  padding: .1em .35em;
+  border: 1px solid var(--c-border);
+  border-radius: 5px;
+  background: var(--c-surface-2);
+  font-size: .88em;
+  overflow-wrap: anywhere;
+}
+
+.prose kbd {
+  padding: .1em .4em;
+  border: 1px solid var(--c-border);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  background: var(--c-surface);
+  font-size: .85em;
+}
+
+.prose hr {
+  margin: var(--space-6) 0;
+  border: 0;
+  border-top: 1px solid var(--c-border);
+}
+
+.prose .formula {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-m);
+  background: var(--c-surface-2);
+  font-family: var(--font-mono);
+  font-size: .95rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+
+.prose dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: var(--space-2) var(--space-4);
+}
+
+.prose dt {
+  font-weight: 700;
+}
+
+.prose dd {
+  margin: 0;
+}
+
+.prose .steps {
+  counter-reset: step;
+  list-style: none;
+  padding-left: 0;
+}
+
+.prose .steps > li {
+  position: relative;
+  padding-left: 2.4em;
+  counter-increment: step;
+}
+
+.prose .steps > li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: .1em;
+  display: grid;
+  place-items: center;
+  width: 1.7em;
+  height: 1.7em;
+  border-radius: 50%;
+  background: var(--c-primary-soft);
+  color: var(--c-primary);
+  font-size: .85em;
+  font-weight: 800;
+}
+
+@media (max-width: 560px) {
+  .prose dl {
+    grid-template-columns: 1fr;
+  }
+
+  .prose dd {
+    margin-bottom: var(--space-2);
+  }
+}

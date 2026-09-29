@@ -1,0 +1,50 @@
+/* Blok: pager – poprzedni / następny temat */
+.pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin-top: var(--space-7);
+}
+
+.pager__link {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-m);
+  background: var(--c-surface);
+  color: var(--c-text);
+  text-decoration: none;
+}
+
+.pager__link:hover {
+  border-color: var(--c-primary);
+}
+
+.pager__link--next {
+  grid-column: 2;
+  text-align: right;
+}
+
+.pager__dir {
+  color: var(--c-muted);
+  font-size: .78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.pager__title {
+  font-weight: 600;
+}
+
+@media (max-width: 560px) {
+  .pager {
+    grid-template-columns: 1fr;
+  }
+
+  .pager__link--next {
+    grid-column: 1;
+  }
+}

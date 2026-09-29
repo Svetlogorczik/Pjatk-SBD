@@ -1,0 +1,64 @@
+/* Blok: toc – spis treści */
+.toc {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-m);
+  background: var(--c-surface);
+}
+
+.toc__title {
+  color: var(--c-muted);
+  font-size: .75rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.toc__list {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  counter-reset: toc;
+}
+
+.toc__item {
+  counter-increment: toc;
+}
+
+.toc__link {
+  display: flex;
+  gap: var(--space-2);
+  padding: 4px 0;
+  color: var(--c-text);
+  font-size: .88rem;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.toc__link::before {
+  content: counter(toc) ".";
+  color: var(--c-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.toc__link:hover,
+.toc__link--active {
+  color: var(--c-primary);
+}
+
+.toc__link--active {
+  font-weight: 600;
+}
+
+.toc--collapsible > .toc__title {
+  cursor: pointer;
+  list-style: none;
+}
+
+.toc--collapsible > .toc__title::-webkit-details-marker {
+  display: none;
+}
+
+.toc--collapsible > .toc__title::after {
+  content: " ▾";
+}

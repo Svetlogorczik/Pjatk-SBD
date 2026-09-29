@@ -1,0 +1,24 @@
+/* Blok: status – aktualność informacji */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: .75rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.status--confirmed { background: var(--c-ok-soft); color: var(--c-ok); }
+.status--lecture { background: var(--c-exam-soft); color: var(--c-exam); }
+.status--estimated { background: var(--c-warn-soft); color: var(--c-warn); }
+.status--unknown { background: var(--c-bad-soft); color: var(--c-bad); }

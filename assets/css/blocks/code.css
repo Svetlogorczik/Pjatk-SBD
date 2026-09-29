@@ -1,0 +1,82 @@
+/* Blok: code – blok kodu z nagłówkiem i przyciskiem kopiowania */
+.code {
+  overflow: hidden;
+  border: 1px solid var(--code-border);
+  border-radius: var(--radius-m);
+  background: var(--code-bg);
+}
+
+.code__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 38px;
+  padding: 4px 6px 4px 12px;
+  border-bottom: 1px solid var(--code-border);
+  background: var(--code-head);
+}
+
+.code__lang {
+  flex: 0 0 auto;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.code__lang--mssql { color: var(--c-mssql); }
+.code__lang--oracle { color: var(--c-oracle); }
+.code__lang--sql { color: var(--c-sql); }
+.code__lang--text { color: var(--c-muted); }
+
+.code__title {
+  overflow: hidden;
+  color: var(--c-muted);
+  font-size: .8rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.code__copy {
+  flex: 0 0 auto;
+  margin-left: auto;
+  padding: 4px 10px;
+  border: 1px solid var(--code-border);
+  border-radius: var(--radius-s);
+  background: var(--code-bg);
+  color: var(--code-text);
+  font-size: .78rem;
+  font-weight: 600;
+}
+
+.code__copy:hover {
+  border-color: var(--c-primary);
+}
+
+.code__copy--done {
+  border-color: var(--c-ok);
+  color: var(--c-ok);
+}
+
+.code__pre {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  overflow-x: auto;
+  color: var(--code-text);
+  font-size: .86rem;
+  line-height: 1.6;
+  tab-size: 4;
+}
+
+.code__body {
+  font-family: var(--font-mono);
+  white-space: pre;
+}
+
+.code__tok--kw { color: var(--code-kw); font-weight: 600; }
+.code__tok--fn { color: var(--code-fn); }
+.code__tok--type { color: var(--code-type); }
+.code__tok--str { color: var(--code-str); }
+.code__tok--num { color: var(--code-num); }
+.code__tok--com { color: var(--code-com); font-style: italic; }
+.code__tok--var { color: var(--code-var); }

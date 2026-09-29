@@ -1,0 +1,38 @@
+/* Blok: layout – siatka: sidebar + treść */
+.layout {
+  flex: 1 0 auto;
+  display: grid;
+  grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
+  align-items: start;
+}
+
+.layout__sidebar {
+  position: sticky;
+  top: var(--header-h);
+  height: calc(100vh - var(--header-h));
+}
+
+.layout__main {
+  min-width: 0;
+}
+
+@media (max-width: 1023px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .layout__sidebar {
+    position: fixed;
+    left: 0;
+    top: var(--header-h);
+    z-index: 35;
+    width: min(86vw, var(--sidebar-w));
+    transform: translateX(-105%);
+    transition: transform .22s ease;
+    box-shadow: var(--shadow-m);
+  }
+
+  .layout__sidebar.sidebar--open {
+    transform: none;
+  }
+}

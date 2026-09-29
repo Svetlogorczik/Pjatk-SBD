@@ -1,0 +1,19 @@
+/* Blok: badge – etykiety (dialekt, moduł) */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  color: var(--c-muted);
+  font-size: .72rem;
+  font-weight: 700;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.badge--mssql { color: var(--c-mssql); }
+.badge--oracle { color: var(--c-oracle); }
+.badge--sql { color: var(--c-sql); }
+.badge--theory { color: var(--c-theory); }
+.badge--own { color: var(--c-own); }

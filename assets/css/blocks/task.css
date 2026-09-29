@@ -1,0 +1,51 @@
+/* Blok: task – lista zadań */
+.task {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: task;
+}
+
+.task__item {
+  position: relative;
+  padding: var(--space-4) var(--space-4) var(--space-4) 60px;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-m);
+  background: var(--c-surface);
+  counter-increment: task;
+}
+
+.task__item + .task__item {
+  margin-top: var(--space-3);
+}
+
+.task__item::before {
+  content: counter(task);
+  position: absolute;
+  left: var(--space-4);
+  top: var(--space-4);
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--c-primary-soft);
+  color: var(--c-primary);
+  font-weight: 800;
+  font-size: .85rem;
+}
+
+.task__body > * + * {
+  margin-top: var(--space-3);
+}
+
+@media (max-width: 560px) {
+  .task__item {
+    padding: 52px var(--space-3) var(--space-3);
+  }
+
+  .task__item::before {
+    left: var(--space-3);
+    top: var(--space-3);
+  }
+}

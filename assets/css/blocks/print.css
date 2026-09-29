@@ -1,0 +1,43 @@
+/* Druk: tylko treść (np. ściąga z panelu albo strona ze wszystkimi ściągami). */
+@media print {
+  .header,
+  .layout__sidebar,
+  .sidebar__backdrop,
+  .footer,
+  .lesson__aside,
+  .lesson__actions,
+  .lesson__toc-mobile,
+  .pager,
+  .code__copy,
+  .drawer__tools,
+  .drawer__backdrop {
+    display: none !important;
+  }
+
+  .layout {
+    display: block;
+  }
+
+  .main {
+    padding: 0;
+  }
+
+  .page--print-drawer .layout {
+    display: none;
+  }
+
+  .drawer {
+    position: static;
+  }
+
+  .drawer__panel {
+    position: static;
+    width: auto;
+    box-shadow: none;
+    animation: none;
+  }
+
+  .code__body {
+    white-space: pre-wrap;
+  }
+}

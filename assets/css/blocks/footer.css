@@ -1,0 +1,17 @@
+/* Blok: footer */
+.footer {
+  border-top: 1px solid var(--c-border);
+  background: var(--c-surface);
+}
+
+.footer__inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-5);
+}
+
+.footer__text {
+  color: var(--c-muted);
+  font-size: .82rem;
+  text-align: center;
+}

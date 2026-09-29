@@ -1,0 +1,134 @@
+/* Blok: quiz – test próbny w formacie egzaminu */
+.quiz__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.quiz__progress {
+  flex: 1 1 200px;
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--c-surface-2);
+}
+
+.quiz__progress-fill {
+  height: 100%;
+  background: var(--c-primary);
+  transition: width .2s;
+}
+
+.quiz__counter {
+  color: var(--c-muted);
+  font-size: .9rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.quiz__card {
+  padding: var(--space-5);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-l);
+  background: var(--c-surface);
+  box-shadow: var(--shadow-s);
+}
+
+.quiz__topic {
+  margin-bottom: var(--space-2);
+  color: var(--c-primary);
+  font-size: .75rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.quiz__question {
+  margin-bottom: var(--space-4);
+  font-size: 1.12rem;
+  line-height: 1.45;
+}
+
+.quiz__options {
+  display: grid;
+  gap: var(--space-2);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.quiz__option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-m);
+  cursor: pointer;
+}
+
+.quiz__option:hover {
+  background: var(--c-surface-2);
+}
+
+.quiz__option input {
+  margin-top: .3em;
+  accent-color: var(--c-primary);
+}
+
+.quiz__option--correct {
+  border-color: var(--c-ok);
+  background: var(--c-ok-soft);
+}
+
+.quiz__option--wrong {
+  border-color: var(--c-bad);
+  background: var(--c-bad-soft);
+}
+
+.quiz__option--missed {
+  border-color: var(--c-ok);
+  border-style: dashed;
+}
+
+.quiz__feedback {
+  margin-top: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-m);
+  font-weight: 600;
+}
+
+.quiz__feedback--ok {
+  background: var(--c-ok-soft);
+  color: var(--c-ok);
+}
+
+.quiz__feedback--bad {
+  background: var(--c-bad-soft);
+  color: var(--c-bad);
+}
+
+.quiz__explain {
+  margin-top: var(--space-2);
+  color: var(--c-text);
+  font-weight: 400;
+}
+
+.quiz__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.quiz__result {
+  text-align: center;
+}
+
+.quiz__score {
+  margin: var(--space-3) 0;
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--c-primary);
+}

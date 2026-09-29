@@ -1,0 +1,33 @@
+/* Punkt wejścia stylów. Struktura: base/ (zmienne, reset, typografia) + blocks/ (bloki BEM). */
+@import url("base/tokens.css");
+@import url("base/reset.css");
+@import url("base/typography.css");
+
+@import url("blocks/page.css");
+@import url("blocks/header.css");
+@import url("blocks/logo.css");
+@import url("blocks/switcher.css");
+@import url("blocks/icon-btn.css");
+@import url("blocks/btn.css");
+@import url("blocks/layout.css");
+@import url("blocks/sidebar.css");
+@import url("blocks/main.css");
+@import url("blocks/hero.css");
+@import url("blocks/card.css");
+@import url("blocks/badge.css");
+@import url("blocks/lesson.css");
+@import url("blocks/toc.css");
+@import url("blocks/prose.css");
+@import url("blocks/code.css");
+@import url("blocks/note.css");
+@import url("blocks/table.css");
+@import url("blocks/reveal.css");
+@import url("blocks/drawer.css");
+@import url("blocks/pager.css");
+@import url("blocks/task.css");
+@import url("blocks/quiz.css");
+@import url("blocks/calc.css");
+@import url("blocks/status.css");
+@import url("blocks/timeline.css");
+@import url("blocks/footer.css");
+@import url("blocks/print.css");

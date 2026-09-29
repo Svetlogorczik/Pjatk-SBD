@@ -1,0 +1,61 @@
+/* Blok: calc – kalkulator oceny końcowej */
+.calc {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-l);
+  background: var(--c-surface);
+}
+
+.calc__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.calc__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-weight: 600;
+  font-size: .9rem;
+}
+
+.calc__input {
+  padding: 8px 10px;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-s);
+  background: var(--c-bg);
+}
+
+.calc__range {
+  width: 100%;
+  accent-color: var(--c-primary);
+}
+
+.calc__out {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border-radius: var(--radius-m);
+  background: var(--c-surface-2);
+}
+
+.calc__grade {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--c-primary);
+}
+
+.calc__detail {
+  color: var(--c-muted);
+}
+
+@media (max-width: 560px) {
+  .calc__row {
+    grid-template-columns: 1fr;
+  }
+}

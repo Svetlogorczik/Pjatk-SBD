@@ -1,0 +1,41 @@
+/* Blok: timeline – plan semestru */
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-left: 2px solid var(--c-border);
+}
+
+.timeline__item {
+  position: relative;
+  padding: 0 0 var(--space-4) var(--space-5);
+}
+
+.timeline__item::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--c-primary);
+  border-radius: 50%;
+  background: var(--c-surface);
+}
+
+.timeline__item--done::before {
+  background: var(--c-primary);
+}
+
+.timeline__date {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 700;
+}
+
+.timeline__text {
+  color: var(--c-muted);
+  font-size: .95rem;
+}

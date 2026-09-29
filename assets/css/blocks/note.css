@@ -1,0 +1,71 @@
+/* Blok: note – ramki: dodatek autora, wskazówka, uwaga, egzamin, z wykładu */
+.note {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--c-border);
+  border-left: 4px solid var(--c-muted);
+  border-radius: var(--radius-m);
+  background: var(--c-surface);
+}
+
+.note__label {
+  margin-bottom: var(--space-1);
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.note__body > * + * {
+  margin-top: var(--space-2);
+}
+
+.note__body ul,
+.note__body ol {
+  padding-left: 1.3em;
+}
+
+.note--own {
+  border-color: color-mix(in srgb, var(--c-own) 35%, transparent);
+  border-left-color: var(--c-own);
+  background: var(--c-own-soft);
+}
+
+.note--own .note__label { color: var(--c-own); }
+
+.note--tip {
+  border-color: color-mix(in srgb, var(--c-tip) 35%, transparent);
+  border-left-color: var(--c-tip);
+  background: var(--c-tip-soft);
+}
+
+.note--tip .note__label { color: var(--c-tip); }
+
+.note--warn {
+  border-color: color-mix(in srgb, var(--c-warn) 35%, transparent);
+  border-left-color: var(--c-warn);
+  background: var(--c-warn-soft);
+}
+
+.note--warn .note__label { color: var(--c-warn); }
+
+.note--exam {
+  border-color: color-mix(in srgb, var(--c-exam) 35%, transparent);
+  border-left-color: var(--c-exam);
+  background: var(--c-exam-soft);
+}
+
+.note--exam .note__label { color: var(--c-exam); }
+
+.note--lecture {
+  border-left-color: var(--c-lecture);
+  background: var(--c-lecture-soft);
+}
+
+.note--lecture .note__label { color: var(--c-lecture); }
+
+.note--info {
+  border-left-color: var(--c-primary);
+  background: var(--c-primary-soft);
+}
+
+.note--info .note__label { color: var(--c-primary); }

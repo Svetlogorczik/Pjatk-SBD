@@ -1,0 +1,122 @@
+/* Zmienne projektu: kolory (jasny / ciemny motyw), odstępy, fonty. */
+:root {
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+
+  --radius-s: 6px;
+  --radius-m: 10px;
+  --radius-l: 16px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  --header-h: 60px;
+  --sidebar-w: 290px;
+  --content-w: 860px;
+
+  --shadow-s: 0 1px 2px rgba(16, 24, 40, .06), 0 1px 3px rgba(16, 24, 40, .08);
+  --shadow-m: 0 8px 24px rgba(16, 24, 40, .12);
+
+  /* Jasny motyw */
+  --c-bg: #f5f6f8;
+  --c-surface: #ffffff;
+  --c-surface-2: #eef0f4;
+  --c-border: #d9dde5;
+  --c-text: #1a2030;
+  --c-muted: #586174;
+  --c-primary: #c8102e;
+  --c-primary-hover: #a50d26;
+  --c-primary-ink: #ffffff;
+  --c-primary-soft: #fdecee;
+  --c-link: #b00d27;
+  --c-focus: #2563eb;
+
+  --c-own: #6d28d9;
+  --c-own-soft: #f3edff;
+  --c-tip: #047857;
+  --c-tip-soft: #e7f7f0;
+  --c-warn: #b45309;
+  --c-warn-soft: #fff4e3;
+  --c-exam: #1d4ed8;
+  --c-exam-soft: #eaf0ff;
+  --c-lecture: #475569;
+  --c-lecture-soft: #eef1f6;
+  --c-ok: #15803d;
+  --c-ok-soft: #e8f7ec;
+  --c-bad: #b91c1c;
+  --c-bad-soft: #fdecec;
+
+  --c-mssql: #a4262c;
+  --c-oracle: #c2410c;
+  --c-sql: #0f766e;
+  --c-theory: #4338ca;
+
+  /* Kod – jasny */
+  --code-bg: #f7f8fb;
+  --code-head: #eceff5;
+  --code-border: #dfe3ea;
+  --code-text: #1f2937;
+  --code-kw: #b3122f;
+  --code-fn: #7c3aed;
+  --code-str: #0b7a45;
+  --code-num: #b45309;
+  --code-com: #6b7280;
+  --code-var: #1d4ed8;
+  --code-type: #0e7490;
+}
+
+:root[data-theme="dark"] {
+  --shadow-s: 0 1px 2px rgba(0, 0, 0, .4);
+  --shadow-m: 0 10px 30px rgba(0, 0, 0, .5);
+
+  --c-bg: #0d1117;
+  --c-surface: #151b24;
+  --c-surface-2: #1b2230;
+  --c-border: #2b3342;
+  --c-text: #e5e8ee;
+  --c-muted: #9aa4b5;
+  --c-primary: #ff4d64;
+  --c-primary-hover: #ff6b7f;
+  --c-primary-ink: #1a0508;
+  --c-primary-soft: #3a161d;
+  --c-link: #ff8494;
+  --c-focus: #60a5fa;
+
+  --c-own: #c4a5ff;
+  --c-own-soft: #261b3d;
+  --c-tip: #5eead4;
+  --c-tip-soft: #0f2b27;
+  --c-warn: #fbbf24;
+  --c-warn-soft: #2e2410;
+  --c-exam: #93b4ff;
+  --c-exam-soft: #172440;
+  --c-lecture: #b6c2d4;
+  --c-lecture-soft: #1d2533;
+  --c-ok: #4ade80;
+  --c-ok-soft: #10281a;
+  --c-bad: #f87171;
+  --c-bad-soft: #321516;
+
+  --c-mssql: #ff7b82;
+  --c-oracle: #fb923c;
+  --c-sql: #2dd4bf;
+  --c-theory: #a5b4fc;
+
+  /* Kod – ciemny */
+  --code-bg: #0b0f16;
+  --code-head: #161c27;
+  --code-border: #262e3c;
+  --code-text: #dbe2ee;
+  --code-kw: #ff7b93;
+  --code-fn: #c4a5ff;
+  --code-str: #7ee2a8;
+  --code-num: #fbbf6a;
+  --code-com: #7d8799;
+  --code-var: #8ab4ff;
+  --code-type: #67e8f9;
+}
