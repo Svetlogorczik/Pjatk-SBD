@@ -52,7 +52,7 @@
 }
 
 .sidebar__num {
-  flex: 0 0 1.9em;
+  flex: 0 0 2.7em;
   color: var(--c-muted);
   font-variant-numeric: tabular-nums;
   font-size: .8rem;
@@ -64,4 +64,10 @@
   inset: var(--header-h) 0 0 0;
   z-index: 30;
   background: rgba(0, 0, 0, .35);
+}
+
+.sidebar__link--exam,
+.sidebar__link--exam .sidebar__num {
+  color: var(--c-primary);
+  font-weight: 700;
 }

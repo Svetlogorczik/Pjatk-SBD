@@ -41,6 +41,34 @@ course: {
   <li><strong>Passed exam</strong> — at least <strong>10 points</strong> in the test. <span class="status status--confirmed">EDUX</span></li>
 </ol>
 
+<h2>Passing the labs — points and tests</h2>
+<p><span class="status status--confirmed">instructor’s rules · full-time studies</span> According to the document “Zasady zaliczenia ćwiczeń – SBD dzienne” (instructor: K. Bajszczak). Other groups may have different rules — check with your instructor.</p>
+<table>
+  <thead><tr><th>What</th><th>Points</th><th>When</th><th>Practice on this site</th></tr></thead>
+  <tbody>
+    <tr><td>Test 1: ERD + SQL</td><td>10</td><td>class 3</td><td><a href="#/tasks/t01-erd">Exercises 1</a>, <a href="#/tasks/t02-sql">2</a>, <a href="#/tasks/t03-sql">3</a></td></tr>
+    <tr><td>Test 2: T-SQL</td><td>10</td><td>class 8</td><td><a href="#/tasks/k1-tsql">T-SQL practice set</a></td></tr>
+    <tr><td>Test 3: PL/SQL</td><td>10</td><td>class 13</td><td><a href="#/tasks/k2-plsql">PL/SQL practice set</a></td></tr>
+    <tr><td>Project</td><td>10</td><td>defence in class 14 — in person</td><td><a href="#/tasks/project">Project</a></td></tr>
+  </tbody>
+</table>
+<ul>
+  <li>You need <strong>at least 50% (5 pts) in every test and in the project</strong> — otherwise no passing grade, even with a high total.</li>
+  <li>In the <strong>last class</strong> you can retake <strong>one</strong> test.</li>
+  <li>Attendance is mandatory; <strong>three absences</strong> per semester are allowed.</li>
+</ul>
+<table>
+  <thead><tr><th>Total points (max 40)</th><th>Lab grade</th></tr></thead>
+  <tbody>
+    <tr><td>36–40</td><td>5</td></tr>
+    <tr><td>32–35</td><td>4.5</td></tr>
+    <tr><td>28–31</td><td>4</td></tr>
+    <tr><td>24–27</td><td>3.5</td></tr>
+    <tr><td>20–23</td><td>3</td></tr>
+    <tr><td>0–19</td><td>2</td></tr>
+  </tbody>
+</table>
+
 <h2>The exam — what it looks like</h2>
 <ul>
   <li>A <strong>multiple-choice</strong> test on computers, in <strong>EDUX</strong> — just like the RBD exam. <span class="status status--confirmed">EDUX</span></li>
@@ -117,7 +145,7 @@ course: {
     <tr><td>7</td><td>Indexes and transactions (execution plans, isolation levels)</td><td><a href="#/tasks/t07-indexes-transactions">7</a></td></tr>
     <tr><td>8</td><td>Database files, backup/restore, permissions</td><td><a href="#/tasks/t08-backup-security">8</a></td></tr>
     <tr><td>9–11</td><td>PL/SQL: basics, cursors, triggers</td><td><a href="#/tasks/t09-plsql">9</a>, <a href="#/tasks/t10-plsql-cursors">10</a>, <a href="#/tasks/t11-plsql-triggers">11</a></td></tr>
-    <tr><td>Tests</td><td>Last year test 2 = a procedure + a trigger in PL/SQL</td><td><a href="#/tasks/k1-tsql">K1</a>, <a href="#/tasks/k2-plsql">K2</a></td></tr>
+    <tr><td>Tests</td><td>class 3: ERD + SQL · class 8: T-SQL · class 13: PL/SQL (10 pts each)</td><td><a href="#/tasks/t03-sql">SQL</a>, <a href="#/tasks/k1-tsql">T-SQL</a>, <a href="#/tasks/k2-plsql">PL/SQL</a></td></tr>
     <tr><td>Project</td><td>Own database (ERD → scripts) + procedures and triggers in Oracle and MS SQL</td><td><a href="#/tasks/project">Project</a></td></tr>
   </tbody>
 </table>

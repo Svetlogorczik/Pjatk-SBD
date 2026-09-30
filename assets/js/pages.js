@@ -13,7 +13,13 @@
   function taskSet(id) { return SBD.taskSets.filter(function (s) { return s.id === id; })[0]; }
   function taskData(id) { return SBD.tasks[L()][id]; }
   function taskTitle(id) { var x = taskData(id); return x ? x.title : id; }
-  function num(id) { return SBD.topicOrder.indexOf(id) + 1; }
+  function num(id) { return SBD.topicMeta[id].no; }
+  function lec(id) {
+    var m = SBD.topicMeta[id];
+    return m.lec + (m.of > 1 ? ' · ' + t('part') + ' ' + m.part + '/' + m.of : '');
+  }
+  function modTitle(m) { return t('lecture_word') + ' ' + m.n + ' · ' + t('mod_' + m.id); }
+  function moduleOf(id) { return SBD.modules.filter(function (m) { return m.id === id; })[0]; }
 
   V.onCleanup = function (fn) { cleanups.push(fn); };
   V.cleanup = function () {
@@ -39,9 +45,15 @@
       '</ul></div>';
 
     SBD.modules.forEach(function (m) {
-      html += '<div class="sidebar__group"><p class="sidebar__title">' + esc(m.icon) + ' ' + esc(t('mod_' + m.id)) + '</p><ul class="sidebar__list">';
+      html += '<div class="sidebar__group"><p class="sidebar__title">' + esc(modTitle(m)) + '</p><ul class="sidebar__list">';
       m.topics.forEach(function (id) {
-        html += link('#/lecture/' + id, topicTitle(id), 'lecture:' + id, num(id) + '.');
+        html += link('#/lecture/' + id, topicTitle(id), 'lecture:' + id, num(id));
+      });
+      m.tasks.forEach(function (id) {
+        html += link('#/tasks/' + id, taskTitle(id), 'task:' + id, '✎');
+      });
+      m.marks.forEach(function (k) {
+        html += '<li><a class="sidebar__link sidebar__link--exam" href="' + k.href + '"><span class="sidebar__num">★</span><span>' + esc(t('mark_' + k.key)) + '</span></a></li>';
       });
       html += '</ul></div>';
     });
@@ -49,7 +61,7 @@
     html += '<div class="sidebar__group"><p class="sidebar__title">✎ ' + esc(t('navTasks')) + '</p><ul class="sidebar__list">';
     html += link('#/tasks', t('tasks_title'), 'tasks');
     SBD.taskSets.forEach(function (s) {
-      html += link('#/tasks/' + s.id, taskTitle(s.id), 'task:' + s.id, s.icon.length <= 2 ? s.icon : '');
+      if (!s.lec) html += link('#/tasks/' + s.id, taskTitle(s.id), 'task:' + s.id, s.icon.length <= 2 ? s.icon : '');
     });
     html += '</ul></div>';
     return html;
@@ -62,8 +74,8 @@
     var mods = SBD.modules.map(function (m) {
       return '<a class="card" href="#/lecture/' + m.topics[0] + '">' +
         '<span class="card__icon">' + esc(m.icon) + '</span>' +
-        '<span class="card__title">' + esc(t('mod_' + m.id)) + '</span>' +
-        '<span class="card__text">' + esc(t('modd_' + m.id)) + '</span>' +
+        '<span class="card__title">' + esc(modTitle(m)) + '</span>' +
+        '<span class="card__text">' + esc(m.topics.map(topicTitle).join(' · ')) + '</span>' +
         '<span class="card__meta"><span class="badge">' + m.topics.length + ' ' + esc(t('topics')) + '</span></span>' +
       '</a>';
     }).join('');
@@ -111,14 +123,33 @@
       '<h1 class="main__title">' + esc(t('lectures_title')) + '</h1>' +
       '<p class="main__lead">' + esc(t('lectures_lead')) + '</p>';
     SBD.modules.forEach(function (m) {
-      html += '<section class="main__section"><h2 class="main__section-title">' + esc(m.icon + ' ' + t('mod_' + m.id)) + '</h2><div class="cards">';
+      html += '<section class="main__section"><h2 class="main__section-title">' + esc(modTitle(m)) + '</h2><div class="cards">';
       m.topics.forEach(function (id) {
         var c = topic(id) || {};
         html += '<a class="card" href="#/lecture/' + id + '">' +
           '<span class="card__icon">' + num(id) + '</span>' +
           '<span class="card__title">' + esc(c.title || id) + '</span>' +
+          '<span class="card__meta">' + esc(t('lecture_word') + ' ' + lec(id)) + '</span>' +
           (c.lead ? '<span class="card__text">' + esc(c.lead) + '</span>' : '') +
           '<span class="card__meta">' + SBD.render.badges(SBD.topicMeta[id].dialects) + '</span>' +
+        '</a>';
+      });
+      m.tasks.forEach(function (id) {
+        var s = taskSet(id);
+        var x = taskData(id) || {};
+        html += '<a class="card" href="#/tasks/' + id + '">' +
+          '<span class="card__icon">✎</span>' +
+          '<span class="card__title">' + esc(x.title || id) + '</span>' +
+          '<span class="card__meta">' + esc(t('afterLecture') + ' ' + m.n) + '</span>' +
+          (x.lead ? '<span class="card__text">' + esc(x.lead) + '</span>' : '') +
+          '<span class="card__meta">' + SBD.render.badges(s.dialects) + '</span>' +
+        '</a>';
+      });
+      m.marks.forEach(function (k) {
+        html += '<a class="card card--exam" href="' + k.href + '">' +
+          '<span class="card__icon">★</span>' +
+          '<span class="card__title">' + esc(t('mark_' + k.key)) + '</span>' +
+          '<span class="card__text">' + esc(t('mark_' + k.key + '_info')) + '</span>' +
         '</a>';
       });
       html += '</div></section>';
@@ -145,7 +176,7 @@
     var html = '<div class="lesson">' +
       '<article class="lesson__main">' +
         '<header class="lesson__header">' +
-          '<p class="lesson__kicker">' + esc(t('mod_' + meta.module)) + ' · ' + esc(t('topic')) + ' ' + (i + 1) + '/' + SBD.topicOrder.length + '</p>' +
+          '<p class="lesson__kicker">' + esc(modTitle(moduleOf(meta.module))) + (meta.of > 1 ? ' · ' + esc(t('part') + ' ' + meta.part + '/' + meta.of) : '') + '</p>' +
           '<h1 class="lesson__title">' + esc(c.title) + '</h1>' +
           (c.lead ? '<p class="lesson__lead">' + esc(c.lead) + '</p>' : '') +
           '<div class="lesson__meta">' + SBD.render.badges(meta.dialects) +
@@ -228,11 +259,11 @@
       '<p><button class="btn btn--ghost btn--small" type="button" data-action="print-page">⎙ ' + esc(t('cheats_print')) + '</button></p>' +
       '<div class="prose" data-slot="cheats">';
     SBD.modules.forEach(function (m) {
-      html += '<h2>' + esc(m.icon + ' ' + t('mod_' + m.id)) + '</h2>';
+      html += '<h2>' + esc(modTitle(m)) + '</h2>';
       m.topics.forEach(function (id) {
         var c = topic(id);
         if (!c || !c.cheat) return;
-        html += '<h3>' + num(id) + '. <a href="#/lecture/' + id + '">' + esc(c.title) + '</a></h3>' + c.cheat;
+        html += '<h3>' + esc(num(id)) + ' — <a href="#/lecture/' + id + '">' + esc(c.title) + '</a></h3>' + c.cheat;
       });
     });
     html += '</div></div>';
@@ -256,6 +287,7 @@
       html += '<a class="card" href="#/tasks/' + s.id + '">' +
         '<span class="card__icon">' + esc(s.icon) + '</span>' +
         '<span class="card__title">' + esc(x.title || s.id) + '</span>' +
+        '<span class="card__meta">' + esc(s.lec ? t('afterLecture') + ' ' + s.lec : t('tasks_other')) + '</span>' +
         (x.lead ? '<span class="card__text">' + esc(x.lead) + '</span>' : '') +
         '<span class="card__meta">' + SBD.render.badges(s.dialects) +
           (s.own ? '<span class="badge badge--own">' + esc(t('dialect_own')) + '</span>' : '') +
@@ -278,7 +310,7 @@
     if (!x) return V.notFound(t('missing'));
 
     var lectures = (s.topics || []).map(function (tid) {
-      return '<a class="btn btn--ghost btn--small" href="#/lecture/' + tid + '">' + num(tid) + '. ' + esc(topicTitle(tid)) + '</a>';
+      return '<a class="btn btn--ghost btn--small" href="#/lecture/' + tid + '">' + esc(num(tid)) + ' · ' + esc(topicTitle(tid)) + '</a>';
     }).join('');
 
     var body = x.intro || '';
@@ -310,7 +342,7 @@
 
     var html = '<div class="main__inner">' +
       '<header class="lesson__header">' +
-        '<p class="lesson__kicker">' + esc(t('navTasks')) + ' · ' + esc(s.icon) + '</p>' +
+        '<p class="lesson__kicker">' + esc(s.lec ? t('afterLecture') + ' ' + s.lec : t('navTasks') + ' · ' + s.icon) + '</p>' +
         '<h1 class="lesson__title">' + esc(x.title) + '</h1>' +
         (x.lead ? '<p class="lesson__lead">' + esc(x.lead) + '</p>' : '') +
         '<div class="lesson__meta">' + SBD.render.badges(s.dialects) +

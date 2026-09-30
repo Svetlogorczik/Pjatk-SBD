@@ -303,9 +303,9 @@ PozycjaZam (NrZam PK/FK, KodTowaru PK/FK, Ilosc)</pre>
 },
 
 'k1-tsql': {
-  title: 'Practice test K1 (T-SQL)',
+  title: 'Practice test 2 (T-SQL): procedure + trigger',
   lead: 'An own test-style set: a procedure with data checks and a trigger with several rules — MS SQL Server.',
-  intro: `<div data-note="own"><p>Last year's materials had a PL/SQL test (set K2 below). This set is its T-SQL counterpart made by the site author — in case the test also covers MS SQL Server.</p></div>
+  intro: `<div data-note="own"><p>This year the T-SQL test is in <strong>class 8</strong> (10 pts). The tasks were written by the site author in the style of last year’s test — they are <strong>not</strong> real test tasks.</p></div>
 <p>Table: <strong>Produkt (IdProdukt, Nazwa, Cena, Stan)</strong> from <a href="#/tasks/databases">Practice databases</a>. Try to fit in 45 minutes.</p>`,
   items: [
     { q: `<p>Write a procedure <code>Uzupelnij</code> with the parameter <em>product name</em>:</p>
@@ -317,12 +317,21 @@ PozycjaZam (NrZam PK/FK, KodTowaru PK/FK, Ilosc)</pre>
 <li>doesn't allow raising the price by <strong>more than 15%</strong>;</li>
 <li>doesn't allow a <strong>negative</strong> stock;</li>
 <li>when the price changes, prints by how many percent.</li></ul>`,
-      hint: `<p>Compare inserted with deleted by joining on IdProdukt; remember about many rows.</p>`, sol: `<div data-code="k1-02"></div>` }
+      hint: `<p>Compare inserted with deleted by joining on IdProdukt; remember about many rows.</p>`, sol: `<div data-code="k1-02"></div>` },
+    { h: `Variant B — the Kurier table`, text: `<p>A different scenario, same difficulty. Table <strong>Kurier (IdKurier, Nazwisko, DataZatrudnienia, Pensja, Premia, …)</strong> from Practice databases.</p>` },
+    { q: `<p>Write a procedure <code>Podwyzka</code> with a <em>courier id</em> parameter:</p>
+<ul><li>no such courier → raise an error;</li>
+<li>salary is <strong>7000 or more</strong> → print “… already has the top rate – no raise”;</li>
+<li>otherwise increase the salary by <strong>300</strong> and print the new salary.</li></ul>`, sol: `<div data-code="k1-03"></div>` },
+    { q: `<p>Write a trigger on the Kurier table that:</p>
+<ul><li>does not allow changing the <strong>hire date</strong>;</li>
+<li>on a salary change prints the percentage change and does not allow <strong>raising</strong> it by more than <strong>20%</strong>;</li>
+<li>does not allow the bonus to be <strong>negative</strong> or <strong>greater than the salary</strong> (INSERT and UPDATE).</li></ul>`, sol: `<div data-code="k1-04"></div>` }
   ]
 },
 
 'k2-plsql': {
-  title: 'Practice test K2 (PL/SQL)',
+  title: 'Practice test 3 (PL/SQL): procedure + trigger',
   lead: 'The same logic as last year’s test (a procedure + a trigger in PL/SQL), but a different table, thresholds and rules.',
   intro: `<p>Table: <strong>Produkt (IdProdukt, Nazwa, Cena, Stan)</strong> in Oracle — from <a href="#/tasks/databases">Practice databases</a>.</p>
 <div data-note="warn"><p>A common mistake: checking whether the product exists with <code>IF v_stock = 0</code> after <code>SELECT … INTO</code>. When there is no row, SELECT INTO raises <code>NO_DATA_FOUND</code> — the IF is never reached. It must be handled in the EXCEPTION section (or use COUNT).</p></div>`,
@@ -334,7 +343,16 @@ PozycjaZam (NrZam PK/FK, KodTowaru PK/FK, Ilosc)</pre>
     { q: `<p>Write a trigger on the Produkt table that:</p>
 <ul><li>on update doesn't allow changing the <strong>name</strong>;</li>
 <li>prints the price change percentage and doesn't allow <strong>lowering</strong> the price by more than <strong>25%</strong>;</li>
-<li>doesn't allow a <strong>negative</strong> stock (on INSERT and UPDATE).</li></ul>`, sol: `<div data-code="k2-02"></div>` }
+<li>doesn't allow a <strong>negative</strong> stock (on INSERT and UPDATE).</li></ul>`, sol: `<div data-code="k2-02"></div>` },
+    { h: `Variant B — the Kurier table`, text: `<p>A different scenario, same difficulty. Table <strong>Kurier (IdKurier, Nazwisko, DataZatrudnienia, Pensja, Premia, …)</strong> from Practice databases.</p>` },
+    { q: `<p>Write a procedure <code>Podwyzka</code> with a <em>courier id</em> parameter:</p>
+<ul><li>no such courier → raise an error;</li>
+<li>salary is <strong>7000 or more</strong> → print “… already has the top rate – no raise”;</li>
+<li>otherwise increase the salary by <strong>300</strong> and print the new salary.</li></ul>`, sol: `<div data-code="k2-03"></div>` },
+    { q: `<p>Write a trigger on the Kurier table that:</p>
+<ul><li>does not allow changing the <strong>hire date</strong>;</li>
+<li>on a salary change prints the percentage change and does not allow <strong>raising</strong> it by more than <strong>20%</strong>;</li>
+<li>does not allow the bonus to be <strong>negative</strong> or <strong>greater than the salary</strong> (INSERT and UPDATE).</li></ul>`, sol: `<div data-code="k2-04"></div>` }
   ]
 },
 

@@ -303,9 +303,9 @@ PozycjaZam (NrZam PK/FK, KodTowaru PK/FK, Ilosc)</pre>
 },
 
 'k1-tsql': {
-  title: 'Пробная контрольная K1 (T-SQL)',
+  title: 'Пробный колос 2 (T-SQL): процедура + триггер',
   lead: 'Собственный набор в стиле контрольной: процедура с проверкой данных и триггер с несколькими правилами — MS SQL Server.',
-  intro: `<div data-note="own"><p>В прошлогодних материалах была контрольная по PL/SQL (набор K2 ниже). Этот набор — её аналог на T-SQL, сделанный автором сайта, на случай если контрольная будет охватывать и MS SQL Server.</p></div>
+  intro: `<div data-note="own"><p>В этом году колос по T-SQL — на <strong>8-м занятии</strong> (10 баллов). Задания составлены автором сайта в стиле прошлогоднего колоса — это <strong>не</strong> настоящие задания с колоса.</p></div>
 <p>Таблица: <strong>Produkt (IdProdukt, Nazwa, Cena, Stan)</strong> из раздела <a href="#/tasks/databases">Учебные базы</a>. Постарайтесь уложиться в 45 минут.</p>`,
   items: [
     { q: `<p>Напишите процедуру <code>Uzupelnij</code> с параметром <em>название товара</em>:</p>
@@ -317,12 +317,21 @@ PozycjaZam (NrZam PK/FK, KodTowaru PK/FK, Ilosc)</pre>
 <li>не позволяет поднять цену <strong>более чем на 15%</strong>;</li>
 <li>не допускает <strong>отрицательный</strong> остаток;</li>
 <li>при изменении цены выводит, на сколько процентов она изменилась.</li></ul>`,
-      hint: `<p>Сравнивайте inserted с deleted, соединяя по IdProdukt; помните о многих строках.</p>`, sol: `<div data-code="k1-02"></div>` }
+      hint: `<p>Сравнивайте inserted с deleted, соединяя по IdProdukt; помните о многих строках.</p>`, sol: `<div data-code="k1-02"></div>` },
+    { h: `Вариант B — таблица Kurier`, text: `<p>Другой сценарий, та же сложность. Таблица <strong>Kurier (IdKurier, Nazwisko, DataZatrudnienia, Pensja, Premia, …)</strong> из раздела «Учебные базы».</p>` },
+    { q: `<p>Напишите процедуру <code>Podwyzka</code> с параметром <em>id курьера</em>:</p>
+<ul><li>такого курьера нет → вызвать ошибку;</li>
+<li>зарплата <strong>7000 или больше</strong> → вывести «… уже на высшей ставке – без прибавки»;</li>
+<li>иначе увеличить зарплату на <strong>300</strong> и вывести новую зарплату.</li></ul>`, sol: `<div data-code="k1-03"></div>` },
+    { q: `<p>Напишите триггер на таблицу Kurier, который:</p>
+<ul><li>не позволяет менять <strong>дату приёма на работу</strong>;</li>
+<li>при изменении зарплаты выводит процент изменения и не позволяет <strong>поднять</strong> её более чем на <strong>20%</strong>;</li>
+<li>не допускает, чтобы премия была <strong>отрицательной</strong> или <strong>больше зарплаты</strong> (INSERT и UPDATE).</li></ul>`, sol: `<div data-code="k1-04"></div>` }
   ]
 },
 
 'k2-plsql': {
-  title: 'Пробная контрольная K2 (PL/SQL)',
+  title: 'Пробный колос 3 (PL/SQL): процедура + триггер',
   lead: 'Та же логика, что в прошлогодней контрольной (процедура + триггер на PL/SQL), но другая таблица, пороги и правила.',
   intro: `<p>Таблица: <strong>Produkt (IdProdukt, Nazwa, Cena, Stan)</strong> в Oracle — из раздела <a href="#/tasks/databases">Учебные базы</a>.</p>
 <div data-note="warn"><p>Частая ошибка: проверять существование товара через <code>IF v_stan = 0</code> после <code>SELECT … INTO</code>. Если строки нет, SELECT INTO выбрасывает <code>NO_DATA_FOUND</code> — до IF дело не доходит. Это нужно обработать в разделе EXCEPTION (или использовать COUNT).</p></div>`,
@@ -334,7 +343,16 @@ PozycjaZam (NrZam PK/FK, KodTowaru PK/FK, Ilosc)</pre>
     { q: `<p>Напишите триггер на таблицу Produkt, который:</p>
 <ul><li>при изменении не позволяет менять <strong>название</strong>;</li>
 <li>выводит процент изменения цены и не позволяет <strong>снизить</strong> цену более чем на <strong>25%</strong>;</li>
-<li>не допускает <strong>отрицательный</strong> остаток (при INSERT и UPDATE).</li></ul>`, sol: `<div data-code="k2-02"></div>` }
+<li>не допускает <strong>отрицательный</strong> остаток (при INSERT и UPDATE).</li></ul>`, sol: `<div data-code="k2-02"></div>` },
+    { h: `Вариант B — таблица Kurier`, text: `<p>Другой сценарий, та же сложность. Таблица <strong>Kurier (IdKurier, Nazwisko, DataZatrudnienia, Pensja, Premia, …)</strong> из раздела «Учебные базы».</p>` },
+    { q: `<p>Напишите процедуру <code>Podwyzka</code> с параметром <em>id курьера</em>:</p>
+<ul><li>такого курьера нет → вызвать ошибку;</li>
+<li>зарплата <strong>7000 или больше</strong> → вывести «… уже на высшей ставке – без прибавки»;</li>
+<li>иначе увеличить зарплату на <strong>300</strong> и вывести новую зарплату.</li></ul>`, sol: `<div data-code="k2-03"></div>` },
+    { q: `<p>Напишите триггер на таблицу Kurier, который:</p>
+<ul><li>не позволяет менять <strong>дату приёма на работу</strong>;</li>
+<li>при изменении зарплаты выводит процент изменения и не позволяет <strong>поднять</strong> её более чем на <strong>20%</strong>;</li>
+<li>не допускает, чтобы премия была <strong>отрицательной</strong> или <strong>больше зарплаты</strong> (INSERT и UPDATE).</li></ul>`, sol: `<div data-code="k2-04"></div>` }
   ]
 },
 

@@ -302,9 +302,9 @@ PozycjaZam (NrZam PK/FK, KodTowaru PK/FK, Ilosc)</pre>
 },
 
 'k1-tsql': {
-  title: 'Kolokwium próbne K1 (T-SQL)',
+  title: 'Kolokwium 2 próbne (T-SQL): procedura + wyzwalacz',
   lead: 'Własny zestaw w stylu kolokwium: procedura z kontrolą danych i wyzwalacz z kilkoma regułami — MS SQL Server.',
-  intro: `<div data-note="own"><p>W materiałach z poprzedniego roku było kolokwium z PL/SQL (zestaw K2 niżej). Ten zestaw to jego odpowiednik w T-SQL, ułożony przez autora strony — na wypadek, gdyby kolokwium obejmowało też MS SQL Server.</p></div>
+  intro: `<div data-note="own"><p>W tym roku kolokwium z T-SQL jest na <strong>8. zajęciach</strong> (10 pkt). Zadania ułożył autor strony w stylu kolokwium z zeszłego roku — to <strong>nie są</strong> prawdziwe zadania z kolokwium.</p></div>
 <p>Tabela: <strong>Produkt (IdProdukt, Nazwa, Cena, Stan)</strong> z <a href="#/tasks/databases">Baz do ćwiczeń</a>. Czas na rozwiązanie: spróbuj zmieścić się w 45 minutach.</p>`,
   items: [
     { q: `<p>Napisz procedurę <code>Uzupelnij</code> z parametrem <em>nazwa produktu</em>:</p>
@@ -316,12 +316,21 @@ PozycjaZam (NrZam PK/FK, KodTowaru PK/FK, Ilosc)</pre>
 <li>nie pozwoli podnieść ceny o <strong>więcej niż 15%</strong>;</li>
 <li>nie pozwoli ustawić <strong>ujemnego</strong> stanu;</li>
 <li>przy zmianie ceny wypisze, o ile procent się zmieniła.</li></ul>`,
-      hint: `<p>Porównuj inserted z deleted złączeniem po IdProdukt; pamiętaj o wielu wierszach.</p>`, sol: `<div data-code="k1-02"></div>` }
+      hint: `<p>Porównuj inserted z deleted złączeniem po IdProdukt; pamiętaj o wielu wierszach.</p>`, sol: `<div data-code="k1-02"></div>` },
+    { h: `Wariant B — tabela Kurier`, text: `<p>Inny scenariusz, ta sama trudność. Tabela <strong>Kurier (IdKurier, Nazwisko, DataZatrudnienia, Pensja, Premia, …)</strong> z Baz do ćwiczeń.</p>` },
+    { q: `<p>Napisz procedurę <code>Podwyzka</code> z parametrem <em>id kuriera</em>:</p>
+<ul><li>nie ma takiego kuriera → zgłoś błąd;</li>
+<li>pensja wynosi <strong>7000 lub więcej</strong> → wypisz „… ma już najwyższą stawkę – bez podwyżki”;</li>
+<li>w przeciwnym razie zwiększ pensję o <strong>300</strong> i wypisz nową pensję.</li></ul>`, sol: `<div data-code="k1-03"></div>` },
+    { q: `<p>Napisz wyzwalacz na tabeli Kurier, który:</p>
+<ul><li>nie pozwoli zmienić <strong>daty zatrudnienia</strong>;</li>
+<li>przy zmianie pensji wypisze, o ile procent się zmieniła, i nie pozwoli <strong>podnieść</strong> jej o więcej niż <strong>20%</strong>;</li>
+<li>nie pozwoli, żeby premia była <strong>ujemna</strong> albo <strong>większa od pensji</strong> (INSERT i UPDATE).</li></ul>`, sol: `<div data-code="k1-04"></div>` }
   ]
 },
 
 'k2-plsql': {
-  title: 'Kolokwium próbne K2 (PL/SQL)',
+  title: 'Kolokwium 3 próbne (PL/SQL): procedura + wyzwalacz',
   lead: 'Ta sama logika co na kolokwium z zeszłego roku (procedura + wyzwalacz w PL/SQL), ale inna tabela, inne progi i reguły.',
   intro: `<p>Tabela: <strong>Produkt (IdProdukt, Nazwa, Cena, Stan)</strong> w Oracle — z <a href="#/tasks/databases">Baz do ćwiczeń</a>.</p>
 <div data-note="warn"><p>Częsty błąd: sprawdzanie, czy produkt istnieje, przez <code>IF v_stan = 0</code> po <code>SELECT … INTO</code>. Gdy wiersza nie ma, SELECT INTO rzuca <code>NO_DATA_FOUND</code> — do IF-a nigdy nie dojdzie. Trzeba to obsłużyć w sekcji EXCEPTION (albo użyć COUNT).</p></div>`,
@@ -333,7 +342,16 @@ PozycjaZam (NrZam PK/FK, KodTowaru PK/FK, Ilosc)</pre>
     { q: `<p>Napisz wyzwalacz na tabeli Produkt, który:</p>
 <ul><li>przy zmianie nie pozwoli zmienić <strong>nazwy</strong>;</li>
 <li>wypisze procent zmiany ceny i nie pozwoli <strong>obniżyć</strong> ceny o więcej niż <strong>25%</strong>;</li>
-<li>nie pozwoli ustawić <strong>ujemnego</strong> stanu (przy INSERT i UPDATE).</li></ul>`, sol: `<div data-code="k2-02"></div>` }
+<li>nie pozwoli ustawić <strong>ujemnego</strong> stanu (przy INSERT i UPDATE).</li></ul>`, sol: `<div data-code="k2-02"></div>` },
+    { h: `Wariant B — tabela Kurier`, text: `<p>Inny scenariusz, ta sama trudność. Tabela <strong>Kurier (IdKurier, Nazwisko, DataZatrudnienia, Pensja, Premia, …)</strong> z Baz do ćwiczeń.</p>` },
+    { q: `<p>Napisz procedurę <code>Podwyzka</code> z parametrem <em>id kuriera</em>:</p>
+<ul><li>nie ma takiego kuriera → zgłoś błąd;</li>
+<li>pensja wynosi <strong>7000 lub więcej</strong> → wypisz „… ma już najwyższą stawkę – bez podwyżki”;</li>
+<li>w przeciwnym razie zwiększ pensję o <strong>300</strong> i wypisz nową pensję.</li></ul>`, sol: `<div data-code="k2-03"></div>` },
+    { q: `<p>Napisz wyzwalacz na tabeli Kurier, który:</p>
+<ul><li>nie pozwoli zmienić <strong>daty zatrudnienia</strong>;</li>
+<li>przy zmianie pensji wypisze, o ile procent się zmieniła, i nie pozwoli <strong>podnieść</strong> jej o więcej niż <strong>20%</strong>;</li>
+<li>nie pozwoli, żeby premia była <strong>ujemna</strong> albo <strong>większa od pensji</strong> (INSERT i UPDATE).</li></ul>`, sol: `<div data-code="k2-04"></div>` }
   ]
 },
 

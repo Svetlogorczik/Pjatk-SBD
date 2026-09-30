@@ -53,3 +53,8 @@ a.card:hover {
   margin-top: auto;
   padding-top: var(--space-1);
 }
+
+.card--exam {
+  border-color: var(--c-primary);
+  background: var(--c-primary-soft);
+}

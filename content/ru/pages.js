@@ -41,6 +41,34 @@ course: {
   <li><strong>Сданный экзамен</strong> — минимум <strong>10 баллов</strong> в тесте. <span class="status status--confirmed">EDUX</span></li>
 </ol>
 
+<h2>Зачёт по упражнениям — баллы и колосы</h2>
+<p><span class="status status--confirmed">правила преподавателя · дневное обучение</span> По документу «Zasady zaliczenia ćwiczeń – SBD dzienne» (преподаватель: K. Bajszczak). В других группах правила могут отличаться — уточните у своего преподавателя.</p>
+<table>
+  <thead><tr><th>Что</th><th>Баллы</th><th>Когда</th><th>Тренировка на сайте</th></tr></thead>
+  <tbody>
+    <tr><td>Колос 1: ERD + SQL</td><td>10</td><td>3-е занятие</td><td><a href="#/tasks/t01-erd">Задания 1</a>, <a href="#/tasks/t02-sql">2</a>, <a href="#/tasks/t03-sql">3</a></td></tr>
+    <tr><td>Колос 2: T-SQL</td><td>10</td><td>8-е занятие</td><td><a href="#/tasks/k1-tsql">пробный набор T-SQL</a></td></tr>
+    <tr><td>Колос 3: PL/SQL</td><td>10</td><td>13-е занятие</td><td><a href="#/tasks/k2-plsql">пробный набор PL/SQL</a></td></tr>
+    <tr><td>Проект</td><td>10</td><td>защита на 14-м занятии — лично</td><td><a href="#/tasks/project">Проект</a></td></tr>
+  </tbody>
+</table>
+<ul>
+  <li>Нужно набрать <strong>минимум 50% (5 баллов) за каждый колос и за проект</strong> — иначе положительной оценки не будет даже при большой сумме.</li>
+  <li>На <strong>последнем занятии</strong> можно пересдать <strong>один</strong> колос.</li>
+  <li>Посещение обязательно; допускаются <strong>три пропуска</strong> за семестр.</li>
+</ul>
+<table>
+  <thead><tr><th>Сумма баллов (макс. 40)</th><th>Оценка за упражнения</th></tr></thead>
+  <tbody>
+    <tr><td>36–40</td><td>5</td></tr>
+    <tr><td>32–35</td><td>4.5</td></tr>
+    <tr><td>28–31</td><td>4</td></tr>
+    <tr><td>24–27</td><td>3.5</td></tr>
+    <tr><td>20–23</td><td>3</td></tr>
+    <tr><td>0–19</td><td>2</td></tr>
+  </tbody>
+</table>
+
 <h2>Экзамен — как он выглядит</h2>
 <ul>
   <li>Тест <strong>с выбором ответов</strong> на компьютерах, в <strong>EDUX</strong> — как экзамен по RBD. <span class="status status--confirmed">EDUX</span></li>
@@ -117,7 +145,7 @@ course: {
     <tr><td>7</td><td>Индексы и транзакции (планы выполнения, уровни изоляции)</td><td><a href="#/tasks/t07-indexes-transactions">7</a></td></tr>
     <tr><td>8</td><td>Файлы базы, backup/restore, права</td><td><a href="#/tasks/t08-backup-security">8</a></td></tr>
     <tr><td>9–11</td><td>PL/SQL: основы, курсоры, триггеры</td><td><a href="#/tasks/t09-plsql">9</a>, <a href="#/tasks/t10-plsql-cursors">10</a>, <a href="#/tasks/t11-plsql-triggers">11</a></td></tr>
-    <tr><td>Контрольные</td><td>В прошлом году контрольная 2 = процедура + триггер на PL/SQL</td><td><a href="#/tasks/k1-tsql">K1</a>, <a href="#/tasks/k2-plsql">K2</a></td></tr>
+    <tr><td>Контрольные</td><td>3-е занятие: ERD + SQL · 8-е занятие: T-SQL · 13-е занятие: PL/SQL (по 10 баллов)</td><td><a href="#/tasks/t03-sql">SQL</a>, <a href="#/tasks/k1-tsql">T-SQL</a>, <a href="#/tasks/k2-plsql">PL/SQL</a></td></tr>
     <tr><td>Проект</td><td>Своя база (ERD → скрипты) + процедуры и триггеры в Oracle и MS SQL</td><td><a href="#/tasks/project">Проект</a></td></tr>
   </tbody>
 </table>

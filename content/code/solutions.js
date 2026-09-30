@@ -1105,6 +1105,63 @@ UPDATE Produkt SET Cena = Cena * 1.10 WHERE IdProdukt = 1;   -- OK, +10%
 UPDATE Produkt SET Cena = Cena * 1.30 WHERE IdProdukt = 2;   -- @{błąd|error|ошибка}
 UPDATE Produkt SET Stan = -1 WHERE IdProdukt = 3;            -- @{błąd|error|ошибка}` },
 
+  'k1-03': { lang: 'mssql', code: `
+CREATE OR ALTER PROCEDURE Podwyzka @id INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    DECLARE @pensja INT, @nazwisko VARCHAR(20);
+    SELECT @pensja = Pensja, @nazwisko = Nazwisko FROM Kurier WHERE IdKurier = @id;
+
+    IF @nazwisko IS NULL          -- @{0 wierszy → zmienne zostają NULL|0 rows → variables stay NULL|0 строк → переменные остаются NULL}
+    BEGIN
+        RAISERROR ('Nie ma kuriera o id %d', 16, 1, @id);
+        RETURN;
+    END;
+
+    IF @pensja >= 7000
+        PRINT @nazwisko + ' ma juz najwyzsza stawke - bez podwyzki';
+    ELSE
+    BEGIN
+        UPDATE Kurier SET Pensja = Pensja + 300 WHERE IdKurier = @id;
+        PRINT @nazwisko + ': nowa pensja ' + CAST(@pensja + 300 AS VARCHAR);
+    END;
+END;
+GO
+EXEC Podwyzka 100;   -- @{bez podwyżki (9000)|no raise (9000)|без прибавки (9000)}
+EXEC Podwyzka 105;   -- 2800 → 3100
+EXEC Podwyzka 999;   -- @{błąd|error|ошибка}` },
+
+  'k1-04': { lang: 'mssql', code: `
+CREATE OR ALTER TRIGGER TR_Kurier_Kontrola ON Kurier
+FOR INSERT, UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+    IF EXISTS (SELECT 1 FROM inserted WHERE Premia < 0 OR Premia > Pensja)
+    BEGIN ROLLBACK; RAISERROR ('Premia musi byc w zakresie 0..pensja', 16, 1); RETURN; END;
+
+    IF EXISTS (SELECT 1 FROM inserted i JOIN deleted d ON i.IdKurier = d.IdKurier
+               WHERE i.DataZatrudnienia <> d.DataZatrudnienia)
+    BEGIN ROLLBACK; RAISERROR ('Nie wolno zmieniac daty zatrudnienia', 16, 1); RETURN; END;
+
+    IF EXISTS (SELECT 1 FROM inserted i JOIN deleted d ON i.IdKurier = d.IdKurier
+               WHERE i.Pensja > d.Pensja * 1.20)
+    BEGIN ROLLBACK; RAISERROR ('Pensja nie moze wzrosnac o wiecej niz 20%%', 16, 1); RETURN; END;
+
+    -- @{Pensja jest INT, dlatego 100.0 – inaczej dzielenie całkowite|Pensja is INT, hence 100.0 – otherwise integer division|Pensja — INT, поэтому 100.0, иначе деление целочисленное}
+    DECLARE @info VARCHAR(400);
+    SELECT @info = STRING_AGG(i.Nazwisko + ': ' +
+                   CAST(CAST((i.Pensja - d.Pensja) * 100.0 / d.Pensja AS DECIMAL(6,2)) AS VARCHAR) + '%', ', ')
+    FROM   inserted i JOIN deleted d ON i.IdKurier = d.IdKurier
+    WHERE  i.Pensja <> d.Pensja;
+    IF @info IS NOT NULL PRINT 'Zmiana pensji: ' + @info;
+END;
+GO
+UPDATE Kurier SET Pensja = Pensja * 1.1 WHERE IdKurier = 104;   -- OK, +10%
+UPDATE Kurier SET Pensja = Pensja * 1.5 WHERE IdKurier = 105;   -- @{błąd|error|ошибка}
+UPDATE Kurier SET Premia = 5000 WHERE IdKurier = 104;           -- @{błąd (premia > pensja)|error (bonus > salary)|ошибка (премия > зарплаты)}` },
+
   /* ================= Kolokwium 2 (PL/SQL) ================= */
   'k2-01': { lang: 'oracle', code: `
 CREATE OR REPLACE PROCEDURE Uzupelnij (p_nazwa VARCHAR2)
@@ -1155,6 +1212,59 @@ END;
 UPDATE Produkt SET Cena = Cena * 0.9 WHERE IdProdukt = 1;   -- OK, -10%
 UPDATE Produkt SET Cena = Cena * 0.5 WHERE IdProdukt = 3;   -- ORA-20203
 UPDATE Produkt SET Nazwa = 'Kurtka' WHERE IdProdukt = 3;    -- ORA-20202` },
+
+  'k2-03': { lang: 'oracle', code: `
+CREATE OR REPLACE PROCEDURE Podwyzka (p_id Kurier.IdKurier%TYPE)
+AS
+    v_pensja   Kurier.Pensja%TYPE;
+    v_nazwisko Kurier.Nazwisko%TYPE;
+BEGIN
+    SELECT Pensja, Nazwisko INTO v_pensja, v_nazwisko
+    FROM   Kurier WHERE IdKurier = p_id;          -- @{brak wiersza → NO_DATA_FOUND|no row → NO_DATA_FOUND|нет строки → NO_DATA_FOUND}
+
+    IF v_pensja >= 7000 THEN
+        DBMS_OUTPUT.PUT_LINE(v_nazwisko || ' ma juz najwyzsza stawke - bez podwyzki');
+    ELSE
+        UPDATE Kurier SET Pensja = Pensja + 300 WHERE IdKurier = p_id;
+        DBMS_OUTPUT.PUT_LINE(v_nazwisko || ': nowa pensja ' || (v_pensja + 300));
+    END IF;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RAISE_APPLICATION_ERROR(-20210, 'Nie ma kuriera o id ' || p_id);
+END;
+/
+CALL Podwyzka(100);   -- @{bez podwyżki (9000)|no raise (9000)|без прибавки (9000)}
+CALL Podwyzka(105);   -- 2800 → 3100
+CALL Podwyzka(999);   -- ORA-20210` },
+
+  'k2-04': { lang: 'oracle', code: `
+CREATE OR REPLACE TRIGGER kurier_kontrola
+BEFORE INSERT OR UPDATE ON Kurier
+FOR EACH ROW
+DECLARE
+    v_proc NUMBER(7,2);
+BEGIN
+    IF :NEW.Premia < 0 OR :NEW.Premia > :NEW.Pensja THEN
+        RAISE_APPLICATION_ERROR(-20211, 'Premia musi byc w zakresie 0..pensja');
+    END IF;
+
+    IF UPDATING THEN
+        IF :NEW.DataZatrudnienia <> :OLD.DataZatrudnienia THEN
+            RAISE_APPLICATION_ERROR(-20212, 'Nie wolno zmieniac daty zatrudnienia');
+        END IF;
+        IF :NEW.Pensja <> :OLD.Pensja THEN
+            v_proc := (:NEW.Pensja - :OLD.Pensja) / :OLD.Pensja * 100;
+            DBMS_OUTPUT.PUT_LINE('Pensja ' || :NEW.Nazwisko || ' zmienia sie o ' || v_proc || '%');
+            IF v_proc > 20 THEN
+                RAISE_APPLICATION_ERROR(-20213, 'Pensja nie moze wzrosnac o wiecej niz 20%');
+            END IF;
+        END IF;
+    END IF;
+END;
+/
+UPDATE Kurier SET Pensja = Pensja * 1.1 WHERE IdKurier = 104;   -- OK, +10%
+UPDATE Kurier SET Pensja = Pensja * 1.5 WHERE IdKurier = 105;   -- ORA-20213
+UPDATE Kurier SET Premia = 5000 WHERE IdKurier = 104;           -- ORA-20211` },
 
   /* ================= Projekt – przykład „Klub fitness” ================= */
   'proj-ddl-ora': {

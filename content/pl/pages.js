@@ -41,6 +41,34 @@ course: {
   <li><strong>Zdany egzamin</strong> — min. <strong>10 punktów</strong> z testu. <span class="status status--confirmed">EDUX</span></li>
 </ol>
 
+<h2>Zaliczenie ćwiczeń — punkty i kolokwia</h2>
+<p><span class="status status--confirmed">zasady prowadzącego · studia dzienne</span> Według dokumentu „Zasady zaliczenia ćwiczeń – SBD dzienne” (prowadzący: K. Bajszczak). W innych grupach zasady mogą być inne — sprawdź u swojego prowadzącego.</p>
+<table>
+  <thead><tr><th>Co</th><th>Punkty</th><th>Kiedy</th><th>Trening na tej stronie</th></tr></thead>
+  <tbody>
+    <tr><td>Kolokwium 1: ERD + SQL</td><td>10</td><td>3. zajęcia</td><td><a href="#/tasks/t01-erd">Zadania 1</a>, <a href="#/tasks/t02-sql">2</a>, <a href="#/tasks/t03-sql">3</a></td></tr>
+    <tr><td>Kolokwium 2: T-SQL</td><td>10</td><td>8. zajęcia</td><td><a href="#/tasks/k1-tsql">zestaw próbny T-SQL</a></td></tr>
+    <tr><td>Kolokwium 3: PL/SQL</td><td>10</td><td>13. zajęcia</td><td><a href="#/tasks/k2-plsql">zestaw próbny PL/SQL</a></td></tr>
+    <tr><td>Projekt</td><td>10</td><td>obrona na 14. zajęciach — osobiście</td><td><a href="#/tasks/project">Projekt</a></td></tr>
+  </tbody>
+</table>
+<ul>
+  <li>Trzeba mieć <strong>co najmniej 50% (5 pkt) z każdego kolokwium i z projektu</strong> — inaczej nie ma oceny pozytywnej, nawet przy dużej sumie.</li>
+  <li>Na <strong>ostatnich zajęciach</strong> można poprawić <strong>jedno</strong> kolokwium.</li>
+  <li>Obecność jest obowiązkowa; dopuszczalne są <strong>trzy nieobecności</strong> w semestrze.</li>
+</ul>
+<table>
+  <thead><tr><th>Suma punktów (max 40)</th><th>Ocena z ćwiczeń</th></tr></thead>
+  <tbody>
+    <tr><td>36–40</td><td>5</td></tr>
+    <tr><td>32–35</td><td>4.5</td></tr>
+    <tr><td>28–31</td><td>4</td></tr>
+    <tr><td>24–27</td><td>3.5</td></tr>
+    <tr><td>20–23</td><td>3</td></tr>
+    <tr><td>0–19</td><td>2</td></tr>
+  </tbody>
+</table>
+
 <h2>Egzamin — jak wygląda</h2>
 <ul>
   <li>Test <strong>wielokrotnego wyboru</strong> na komputerach, w systemie <strong>EDUX</strong> — tak jak egzamin z RBD. <span class="status status--confirmed">EDUX</span></li>
@@ -117,7 +145,7 @@ course: {
     <tr><td>7</td><td>Indeksy i transakcje (plany wykonania, poziomy izolacji)</td><td><a href="#/tasks/t07-indexes-transactions">7</a></td></tr>
     <tr><td>8</td><td>Pliki bazy, backup/restore, uprawnienia</td><td><a href="#/tasks/t08-backup-security">8</a></td></tr>
     <tr><td>9–11</td><td>PL/SQL: podstawy, kursory, wyzwalacze</td><td><a href="#/tasks/t09-plsql">9</a>, <a href="#/tasks/t10-plsql-cursors">10</a>, <a href="#/tasks/t11-plsql-triggers">11</a></td></tr>
-    <tr><td>Kolokwia</td><td>W zeszłym roku kolokwium 2 = procedura + wyzwalacz w PL/SQL</td><td><a href="#/tasks/k1-tsql">K1</a>, <a href="#/tasks/k2-plsql">K2</a></td></tr>
+    <tr><td>Kolokwia</td><td>3. zajęcia: ERD + SQL · 8. zajęcia: T-SQL · 13. zajęcia: PL/SQL (po 10 pkt)</td><td><a href="#/tasks/t03-sql">SQL</a>, <a href="#/tasks/k1-tsql">T-SQL</a>, <a href="#/tasks/k2-plsql">PL/SQL</a></td></tr>
     <tr><td>Projekt</td><td>Własna baza (ERD → skrypty) + procedury i wyzwalacze w Oracle i MS SQL</td><td><a href="#/tasks/project">Projekt</a></td></tr>
   </tbody>
 </table>
